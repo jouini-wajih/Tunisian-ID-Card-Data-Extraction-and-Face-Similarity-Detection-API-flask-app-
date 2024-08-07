@@ -1,19 +1,25 @@
 import sys
 import json
 from PIL import Image
-import pytesseract
+import easyocr
 
 def process_image(image_path):
     try:
+        # Initialize EasyOCR Reader
+        reader = easyocr.Reader(['ar'])  # Use the language you need
+
         # Open the image file
         img = Image.open(image_path)
-        
-        # Use Tesseract to do OCR on the image
-        text = pytesseract.image_to_string(img)
+
+        # Use EasyOCR to do OCR on the image
+        result = reader.readtext(image_path)
+
+        # Extract and join text from OCR result
+        text = ' '.join([res[1] for res in result])
         
         # Create a JSON response
-        result = {'text': text.strip()}
-        return json.dumps(result)
+        response = {'text': text.strip()}
+        return json.dumps(response)
     except Exception as e:
         return json.dumps({'error': str(e)})
 

@@ -3,12 +3,15 @@ import subprocess
 import threading
 import time
 import requests
-from image_processor import process_image  # Import your processing function
+from werkzeug.utils import secure_filename
+import os
+import tempfile
+import image_processor  # Import your image processing module
 
 app = Flask(__name__)
 
 # Define the Rasa command to run
-RASA_COMMAND = "cd ./rasa && rasa run --port 5005 && pip install pytesseract"
+RASA_COMMAND = "cd ./rasa && rasa run --port 5005"
 
 # Global variable to store the Rasa process
 rasa_process = None
@@ -82,20 +85,26 @@ def test_rasa():
     return jsonify({'test_response': rasa_response})
 
 @app.route('/process-image', methods=['POST'])
-def process_image_route():
+def process_image():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-
+        return jsonify({'error': 'No file provided'}), 400
+    
     file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-
+    
+    # Use tempfile to create a temporary directory and file
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
+        file_path = temp_file.name
+        file.save(file_path)
+    
     # Process the image
-    try:
-        result = process_image(file)  # Call your image processing function
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    result = image_processor.process_image(file_path)
+    
+    # Optionally delete the file after processing
+    os.remove(file_path)
+    
+    return result, 200, {'Content-Type': 'application/json'}
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
