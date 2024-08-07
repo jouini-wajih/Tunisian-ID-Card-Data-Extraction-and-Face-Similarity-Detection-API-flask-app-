@@ -1,0 +1,359 @@
+version: "3.1"
+
+stories:
+
+- story: User wants to apply for a loan
+  steps:
+    - intent: applyforloan
+    - action: utter_applyforloan
+    - intent: bank_account_types
+    - action: utter_bank_account_types
+    - intent: account_features
+    - action: utter_account_features
+    - intent: account_restrictions
+    - action: utter_account_restrictions
+    - intent: account_security
+    - action: utter_account_security
+    - intent: Requirements
+    - action: utter_Requirements
+    - intent: Safety
+    - action: utter_Safety
+    - intent: Fees
+    - action: utter_Fees
+    - intent: Time_open_account
+    - action: utter_Time_open_account
+    - intent: Documents
+    - action: utter_Documents
+- story: User wants to check application status and reports an issue
+  steps:
+    - intent: check_application_status
+    - action: utter_check_application_status
+    - intent: reportissue
+    - action: utter_reportissue
+    - intent: cancel_application
+    - action: utter_cancel_application
+    - intent: update_application_information
+    - action: utter_update_application_information
+    - intent: contact_support_for_application
+    - action: utter_contact_support_for_application
+
+- story: User wants to open an online bank account
+  steps:
+    - intent: Opening_account
+    - action: utter_Opening_account
+    - intent: Requirements
+    - action: utter_Requirements
+    - intent: Time_open_account
+    - action: utter_Time_open_account
+    - intent: Documents
+    - action: utter_Documents
+    - intent: Fees
+    - action: utter_Fees
+    - intent: Safety
+    - action: utter_Safety
+    - intent: why_choose
+    - action: utter_why_choose
+    - intent: contactcustomer
+    - action: utter_contactcustomer
+
+- story: User needs assistance with money transfer and contacts customer service
+  steps:
+    - intent: transfermoney
+    - action: utter_transfermoney
+    - intent: contactcustomer
+    - action: utter_contactcustomer
+
+- story: User wants to manage their account and asks about security
+  steps:
+    - intent: accountinformation
+    - action: utter_accountinformation
+    - intent: bank_account_types
+    - action: utter_bank_account_types
+    - intent: account_features
+    - action: utter_account_features
+    - intent: account_security
+    - action: utter_account_security
+    - intent: Safety
+    - action: utter_Safety
+    - intent: checkbalance
+    - action: utter_checkbalance
+    - intent: update_application_information
+    - action: utter_update_application_information
+
+
+- story: User encounters an issue and seeks customer support
+  steps:
+    - intent: reportissue
+    - action: utter_reportissue
+    - intent: cancel_application
+    - action: utter_cancel_application
+    - intent: update_application_information
+    - action: utter_update_application_information
+    - intent: contact_support_for_application
+    - action: utter_contact_support_for_application
+    - intent: contactcustomer
+    - action: utter_contactcustomer
+
+
+- story: User checks application status and seeks approval confirmation
+  steps:
+    - intent: check_application_status
+    - action: utter_check_application_status
+    - intent: application_approval_confirmation
+    - action: utter_application_approval_confirmation
+    - intent: application_rejection_reason
+    - action: utter_application_rejection_reason
+    - intent: update_application_information
+    - action: utter_update_application_information
+
+
+- story: User asks about fees and charges associated with bank services
+  steps:
+    - intent: Fees
+    - action: utter_Fees
+    - intent: bank_account_types
+    - action: utter_bank_account_types
+    - intent: account_features
+    - action: utter_account_features
+    - intent: account_restrictions
+    - action: utter_account_restrictions
+    - intent: Requirements
+    - action: utter_Requirements
+
+
+
+
+- story: User asks about account features and benefits
+  steps:
+    - intent: bank_account_types
+    - action: utter_bank_account_types
+    - intent: account_features
+    - action: utter_account_features
+    - intent: why_choose
+    - action: utter_why_choose
+    - intent: Safety
+    - action: utter_Safety
+    - intent: Fees
+    - action: utter_Fees
+- story: User seeks guidance on money transfer and asks about security measures
+  steps:
+    - intent: transfermoney
+    - action: utter_transfermoney
+    - intent: account_security
+    - action: utter_account_security
+    - intent: Safety
+    - action: utter_Safety
+    - intent: contactcustomer
+    - action: utter_contactcustomer
+- story: User wants to update application information and contacts customer service
+  steps:
+    - intent: update_application_information
+    - action: utter_update_application_information
+    - intent: contact_support_for_application
+    - action: utter_contact_support_for_application
+    - intent: contactcustomer
+    - action: utter_contactcustomer
+- story: User asks about account restrictions and requirements
+  steps:
+    - intent: account_restrictions
+    - action: utter_account_restrictions
+    - intent: Requirements
+    - action: utter_Requirements
+    - intent: bank_account_types
+    - action: utter_bank_account_types
+    - intent: Fees
+    - action: utter_Fees
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: user needs help
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: need_help
+  - action: utter_need_help
+
+- story: user asks about requirements
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Requirements
+  - action: utter_Requirements
+
+- story: user asks about opening an account
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Opening_account
+  - action: utter_Opening_account
+
+- story: user asks about time to open an account
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Time_open_account
+  - action: utter_Time_open_account
+
+- story: user asks about required documents
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Documents
+  - action: utter_Documents
+
+- story: user asks about fees
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Fees
+  - action: utter_Fees
+
+- story: user asks about safety/security
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Safety
+  - action: utter_Safety
+
+- story: user asks why to choose online bank account
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: why_choose
+  - action: utter_why_choose
+
+- story: user asks for account information
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: accountinformation
+  - action: utter_accountinformation
+
+- story: user wants to contact customer service
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: contactcustomer
+  - action: utter_contactcustomer
+
+- story: user wants to transfer money
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transfermoney
+  - action: utter_transfermoney
+
+- story: user wants to check account balance
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: checkbalance
+  - action: utter_checkbalance
+
+- story: user wants to report an issue
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: reportissue
+  - action: utter_reportissue
+
+- story: user wants to apply for a loan
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: applyforloan
+  - action: utter_applyforloan
+
+- story: user asks for application rejection reason
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: application_rejection_reason
+  - action: utter_application_rejection_reason
+
+- story: user confirms application approval
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: application_approval_confirmation
+  - action: utter_application_approval_confirmation
+
+- story: user wants to update application information
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: update_application_information
+  - action: utter_update_application_information
+
+- story: user asks to cancel application
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: cancel_application
+  - action: utter_cancel_application
+
+- story: user needs to contact support for application
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: contact_support_for_application
+  - action: utter_contact_support_for_application
+
+- story: user asks if the response helped
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: user asks for more information after initial response
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: need_help
+  - action: utter_need_help
+
+- story: user denies satisfaction with initial response
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: user affirms satisfaction with initial response
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy

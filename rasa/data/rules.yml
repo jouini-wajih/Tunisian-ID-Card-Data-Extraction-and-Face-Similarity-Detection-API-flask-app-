@@ -1,0 +1,133 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Ask the user how can you help him if he needs help
+  steps:
+  - intent: need_help
+  - action: utter_need_help
+
+- rule: Tell the user about opening an online bank account
+  steps:
+  - intent: Opening_account
+  - action: utter_Opening_account
+
+- rule: Tell the user the requirements to open an online bank account
+  steps:
+  - intent: Requirements
+  - action: utter_Requirements
+
+- rule: Say the duration or the time anytime the user asks something about time
+  steps:
+  - intent: Time_open_account
+  - action: utter_Time_open_account
+
+- rule: Say the documents required for opening a bank account anytime the user asks about the papers or the documents
+  steps:
+  - intent: Documents
+  - action: utter_Documents
+
+- rule: Say the information about the fees anytime the user asks about the charges or the fees
+  steps:
+  - intent: Fees
+  - action: utter_Fees
+
+- rule: Say the information related to safety or security anytime the user asks about the safety or the security of the platform
+  steps:
+  - intent: Safety
+  - action: utter_Safety
+
+- rule: Say why to choose to open an online bank account anytime the user asks why
+  steps:
+  - intent: why_choose
+  - action: utter_why_choose
+
+- rule: Provide account information when the user asks for it
+  steps:
+  - intent: accountinformation
+  - action: utter_accountinformation
+
+- rule: Guide the user to contact customer service
+  steps:
+  - intent: contactcustomer
+  - action: utter_contactcustomer
+
+- rule: Assist the user with money transfer instructions
+  steps:
+  - intent: transfermoney
+  - action: utter_transfermoney
+
+- rule: Inform the user about checking their account balance
+  steps:
+  - intent: checkbalance
+  - action: utter_checkbalance
+
+- rule: Help the user with reporting an issue
+  steps:
+  - intent: reportissue
+  - action: utter_reportissue
+
+- rule: Guide the user on applying for a loan
+  steps:
+  - intent: applyforloan
+  - action: utter_applyforloan
+
+- rule: Check application status upon user request
+  steps:
+  - intent: check_application_status
+  - action: utter_check_application_status
+
+- rule: Provide rejection reason upon user request
+  steps:
+  - intent: application_rejection_reason
+  - action: utter_application_rejection_reason
+
+- rule: Confirm application approval upon user request
+  steps:
+  - intent: application_approval_confirmation
+  - action: utter_application_approval_confirmation
+
+- rule: Guide user on updating application information
+  steps:
+  - intent: update_application_information
+  - action: utter_update_application_information
+
+- rule: Assist user in canceling application
+  steps:
+  - intent: cancel_application
+  - action: utter_cancel_application
+
+- rule: Direct user to support for application queries
+  steps:
+  - intent: contact_support_for_application
+  - action: utter_contact_support_for_application
+
+- rule: Provide information about different bank account types
+  steps:
+  - intent: bank_account_types
+  - action: utter_bank_account_types
+
+- rule: Answer questions about account security
+  steps:
+  - intent: account_security
+  - action: utter_account_security
+
+- rule: Inform about account opening restrictions
+  steps:
+  - intent: account_restrictions
+  - action: utter_account_restrictions
+
+- rule: Explain features of online bank accounts
+  steps:
+  - intent: account_features
+  - action: utter_account_features

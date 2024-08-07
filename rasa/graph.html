@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style id="graph-style">
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.getElementById('graph-style').sheet.cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_greet];
+2 [class="", fontsize=12, label=utter_happy];
+4 [class="", fontsize=12, label=utter_cheer_up];
+5 [class="", fontsize=12, label=utter_did_that_help];
+10 [class="", fontsize=12, label=utter_goodbye];
+12 [class="", fontsize=12, label=utter_need_help];
+14 [class="", fontsize=12, label=utter_Requirements];
+16 [class="", fontsize=12, label=utter_Opening_account];
+18 [class="", fontsize=12, label=utter_Time_open_account];
+20 [class="", fontsize=12, label=utter_Documents];
+22 [class="", fontsize=12, label=utter_Fees];
+24 [class="", fontsize=12, label=utter_Safety];
+26 [class="", fontsize=12, label=utter_why_choose];
+28 [class="", fontsize=12, label=utter_accountinformation];
+30 [class="", fontsize=12, label=utter_contactcustomer];
+32 [class="", fontsize=12, label=utter_transfermoney];
+34 [class="", fontsize=12, label=utter_checkbalance];
+36 [class="", fontsize=12, label=utter_reportissue];
+38 [class="", fontsize=12, label=utter_applyforloan];
+40 [class="", fontsize=12, label=utter_application_rejection_reason];
+42 [class="", fontsize=12, label=utter_application_approval_confirmation];
+44 [class="", fontsize=12, label=utter_update_application_information];
+46 [class="", fontsize=12, label=utter_cancel_application];
+48 [class="", fontsize=12, label=utter_contact_support_for_application];
+49 [class="", fontsize=12, label="..."];
+64 [class="", fontsize=12, label=utter_check_application_status];
+78 [class="", fontsize=12, label=utter_bank_account_types];
+80 [class="", fontsize=12, label=utter_account_security];
+82 [class="", fontsize=12, label=utter_account_restrictions];
+84 [class="", fontsize=12, label=utter_account_features];
+86 [class="", fontsize=12, label=utter_iamabot];
+101 [class=intent, fillcolor=lightblue, label="good afternoon", shape=rect, style=filled];
+102 [class=intent, fillcolor=lightblue, label=amazing, shape=rect, style=filled];
+103 [class=intent, fillcolor=lightblue, label="I don't feel very well", shape=rect, style=filled];
+104 [class=intent, fillcolor=lightblue, label="i need assistance", shape=rect, style=filled];
+105 [class=intent, fillcolor=lightblue, label="What are the conditions for opening an account online?", shape=rect, style=filled];
+106 [class=intent, fillcolor=lightblue, label="Guide me through the process of opening an online bank account.", shape=rect, style=filled];
+107 [class=intent, fillcolor=lightblue, label="What is the usual processing time for opening an online bank account?", shape=rect, style=filled];
+108 [class=intent, fillcolor=lightblue, label="List the paperwork required for opening a bank account online.", shape=rect, style=filled];
+109 [class=intent, fillcolor=lightblue, label="What are the fees involved in opening an online bank account?", shape=rect, style=filled];
+110 [class=intent, fillcolor=lightblue, label="Are there any risks associated with opening a bank account online?", shape=rect, style=filled];
+111 [class=intent, fillcolor=lightblue, label="Can you provide a checklist for evaluating banks for online account opening?", shape=rect, style=filled];
+112 [class=intent, fillcolor=lightblue, label="Where can I get more information on my account?", shape=rect, style=filled];
+113 [class=intent, fillcolor=lightblue, label="I need to speak with someone in customer service", shape=rect, style=filled];
+114 [class=intent, fillcolor=lightblue, label="How do I make a bank transfer?", shape=rect, style=filled];
+115 [class=intent, fillcolor=lightblue, label="Check my account balance please", shape=rect, style=filled];
+116 [class=intent, fillcolor=lightblue, label="What should I do if I have a problem with my account?", shape=rect, style=filled];
+117 [class=intent, fillcolor=lightblue, label="What do I need to do to apply for a loan?", shape=rect, style=filled];
+118 [class=intent, fillcolor=lightblue, label="Can you tell me the reason for rejecting my online bank account application?", shape=rect, style=filled];
+119 [class=intent, fillcolor=lightblue, label="What happens after I submit my application to open a bank account online?", shape=rect, style=filled];
+120 [class=intent, fillcolor=lightblue, label="What do I do if I need to update my information on my bank account application online?", shape=rect, style=filled];
+121 [class=intent, fillcolor=lightblue, label="What are the steps to cancel my bank account application online?", shape=rect, style=filled];
+122 [class=intent, fillcolor=lightblue, label="Can I get assistance with my bank account application online?", shape=rect, style=filled];
+123 [class=intent, fillcolor=lightblue, label=correct, shape=rect, style=filled];
+124 [class=intent, fillcolor=lightblue, label=no, shape=rect, style=filled];
+125 [class=intent, fillcolor=lightblue, label="What should I look for in an online bank?", shape=rect, style=filled];
+126 [class=intent, fillcolor=lightblue, label="Could you tell me how to sign in to my account?", shape=rect, style=filled];
+127 [class=intent, fillcolor=lightblue, label="Can I get the customer service email address?", shape=rect, style=filled];
+128 [class=intent, fillcolor=lightblue, label="What are the steps to send money?", shape=rect, style=filled];
+129 [class=intent, fillcolor=lightblue, label="I want to see my balance", shape=rect, style=filled];
+130 [class=intent, fillcolor=lightblue, label="I want to report an issue with my account", shape=rect, style=filled];
+131 [class=intent, fillcolor=lightblue, label="What do I need to do to apply for a loan?", shape=rect, style=filled];
+132 [class=intent, fillcolor=lightblue, label="How do I check the status of my bank account application?", shape=rect, style=filled];
+133 [class=intent, fillcolor=lightblue, label="Why was my bank account application rejected?", shape=rect, style=filled];
+134 [class=intent, fillcolor=lightblue, label="Will I receive confirmation when my online bank account application is approved?", shape=rect, style=filled];
+135 [class=intent, fillcolor=lightblue, label="cee you later", shape=rect, style=filled];
+136 [class=intent, fillcolor=lightblue, label="What do I do if I need to update my information on my bank account application online?", shape=rect, style=filled];
+137 [class=intent, fillcolor=lightblue, label="How do I cancel my online bank account application?", shape=rect, style=filled];
+138 [class=intent, fillcolor=lightblue, label="How can I speak to someone about my application for a bank account online?", shape=rect, style=filled];
+139 [class=intent, fillcolor=lightblue, label="Are there specific bank account options I should consider for online opening?", shape=rect, style=filled];
+140 [class=intent, fillcolor=lightblue, label="How secure are online bank accounts?", shape=rect, style=filled];
+141 [class=intent, fillcolor=lightblue, label="Can you explain any restrictions or requirements for online bank account opening?", shape=rect, style=filled];
+142 [class=intent, fillcolor=lightblue, label="What additional services are available with an online bank account?", shape=rect, style=filled];
+143 [class=intent, fillcolor=lightblue, label="am I talking to a human?", shape=rect, style=filled];
+144 [class=intent, fillcolor=lightblue, label="i need help", shape=rect, style=filled];
+145 [class=intent, fillcolor=lightblue, label="What are the steps to open a bank account online?", shape=rect, style=filled];
+146 [class=intent, fillcolor=lightblue, label="What criteria do I need to meet to open a bank account online?", shape=rect, style=filled];
+147 [class=intent, fillcolor=lightblue, label="Can you tell me the average time for opening an online bank account?", shape=rect, style=filled];
+148 [class=intent, fillcolor=lightblue, label="What are the usual documents needed to open an online bank account?", shape=rect, style=filled];
+149 [class=intent, fillcolor=lightblue, label="What financial implications should I expect when opening an online bank account?", shape=rect, style=filled];
+150 [class=intent, fillcolor=lightblue, label="How safe is it to open an online bank account?", shape=rect, style=filled];
+0 -> 49  [class="", key=NONE, label=""];
+0 -> 101  [class="", key=0];
+1 -> 102  [class="", key=0];
+1 -> 103  [class="", key=0];
+1 -> 104  [class="", key=0];
+1 -> 105  [class="", key=0];
+1 -> 106  [class="", key=0];
+1 -> 107  [class="", key=0];
+1 -> 108  [class="", key=0];
+1 -> 109  [class="", key=0];
+1 -> 110  [class="", key=0];
+1 -> 111  [class="", key=0];
+1 -> 112  [class="", key=0];
+1 -> 113  [class="", key=0];
+1 -> 114  [class="", key=0];
+1 -> 115  [class="", key=0];
+1 -> 116  [class="", key=0];
+1 -> 117  [class="", key=0];
+1 -> 118  [class="", key=0];
+1 -> 119  [class="", key=0];
+1 -> 120  [class="", key=0];
+1 -> 121  [class="", key=0];
+1 -> 122  [class="", key=0];
+2 -> "-1"  [class="", key=NONE, label=""];
+4 -> 5  [class="", key=NONE, label=""];
+5 -> 123  [class="", key=0];
+5 -> 124  [class="", key=0];
+10 -> "-1"  [class="", key=NONE, label=""];
+12 -> "-1"  [class="", key=NONE, label=""];
+14 -> "-1"  [class="", key=NONE, label=""];
+16 -> "-1"  [class="", key=NONE, label=""];
+18 -> "-1"  [class="", key=NONE, label=""];
+20 -> "-1"  [class="", key=NONE, label=""];
+22 -> "-1"  [class="", key=NONE, label=""];
+24 -> "-1"  [class="", key=NONE, label=""];
+26 -> "-1"  [class="", key=NONE, label=""];
+28 -> "-1"  [class="", key=NONE, label=""];
+30 -> "-1"  [class="", key=NONE, label=""];
+32 -> "-1"  [class="", key=NONE, label=""];
+34 -> "-1"  [class="", key=NONE, label=""];
+36 -> "-1"  [class="", key=NONE, label=""];
+38 -> "-1"  [class="", key=NONE, label=""];
+40 -> "-1"  [class="", key=NONE, label=""];
+42 -> "-1"  [class="", key=NONE, label=""];
+44 -> "-1"  [class="", key=NONE, label=""];
+46 -> "-1"  [class="", key=NONE, label=""];
+48 -> "-1"  [class="", key=NONE, label=""];
+49 -> 125  [class="", key=0];
+49 -> 126  [class="", key=0];
+49 -> 127  [class="", key=0];
+49 -> 128  [class="", key=0];
+49 -> 129  [class="", key=0];
+49 -> 130  [class="", key=0];
+49 -> 131  [class="", key=0];
+49 -> 132  [class="", key=0];
+49 -> 133  [class="", key=0];
+49 -> 134  [class="", key=0];
+49 -> 135  [class="", key=0];
+49 -> 136  [class="", key=0];
+49 -> 137  [class="", key=0];
+49 -> 138  [class="", key=0];
+49 -> 139  [class="", key=0];
+49 -> 140  [class="", key=0];
+49 -> 141  [class="", key=0];
+49 -> 142  [class="", key=0];
+49 -> 143  [class="", key=0];
+49 -> 144  [class="", key=0];
+49 -> 145  [class="", key=0];
+49 -> 146  [class="", key=0];
+49 -> 147  [class="", key=0];
+49 -> 148  [class="", key=0];
+49 -> 149  [class="", key=0];
+49 -> 150  [class="", key=0];
+64 -> "-1"  [class="", key=NONE, label=""];
+78 -> "-1"  [class="", key=NONE, label=""];
+80 -> "-1"  [class="", key=NONE, label=""];
+82 -> "-1"  [class="", key=NONE, label=""];
+84 -> "-1"  [class="", key=NONE, label=""];
+86 -> "-1"  [class="", key=NONE, label=""];
+101 -> 1  [class="", key=0];
+102 -> 2  [class="", key=0];
+103 -> 4  [class="", key=0];
+104 -> 12  [class="", key=0];
+105 -> 14  [class="", key=0];
+106 -> 16  [class="", key=0];
+107 -> 18  [class="", key=0];
+108 -> 20  [class="", key=0];
+109 -> 22  [class="", key=0];
+110 -> 24  [class="", key=0];
+111 -> 26  [class="", key=0];
+112 -> 28  [class="", key=0];
+113 -> 30  [class="", key=0];
+114 -> 32  [class="", key=0];
+115 -> 34  [class="", key=0];
+116 -> 36  [class="", key=0];
+117 -> 38  [class="", key=0];
+118 -> 40  [class="", key=0];
+119 -> 42  [class="", key=0];
+120 -> 44  [class="", key=0];
+121 -> 46  [class="", key=0];
+122 -> 48  [class="", key=0];
+123 -> 2  [class="", key=0];
+124 -> 10  [class="", key=0];
+125 -> 26  [class="", key=0];
+126 -> 28  [class="", key=0];
+127 -> 30  [class="", key=0];
+128 -> 32  [class="", key=0];
+129 -> 34  [class="", key=0];
+130 -> 36  [class="", key=0];
+131 -> 38  [class="", key=0];
+132 -> 64  [class="", key=0];
+133 -> 40  [class="", key=0];
+134 -> 42  [class="", key=0];
+135 -> 10  [class="", key=0];
+136 -> 44  [class="", key=0];
+137 -> 46  [class="", key=0];
+138 -> 48  [class="", key=0];
+139 -> 78  [class="", key=0];
+140 -> 80  [class="", key=0];
+141 -> 82  [class="", key=0];
+142 -> 84  [class="", key=0];
+143 -> 86  [class="", key=0];
+144 -> 12  [class="", key=0];
+145 -> 16  [class="", key=0];
+146 -> 14  [class="", key=0];
+147 -> 18  [class="", key=0];
+148 -> 20  [class="", key=0];
+149 -> 22  [class="", key=0];
+150 -> 24  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>

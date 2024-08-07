@@ -1,0 +1,160 @@
+version: '3.1'
+intents:
+- Documents
+- Fees
+- Opening_account
+- Requirements
+- Safety
+- Time_open_account
+- account_features
+- account_restrictions
+- account_security
+- accountinformation
+- affirm
+- application_approval_confirmation
+- application_rejection_reason
+- applyforloan
+- bank_account_types
+- bot_challenge
+- cancel_application
+- check_application_status
+- checkbalance
+- contact_support_for_application
+- contactcustomer
+- deny
+- goodbye
+- greet
+- mood_great
+- mood_unhappy
+- need_help
+- reportissue
+- transfermoney
+- update_application_information
+- why_choose
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  - text: Hello! How can I assist you today?
+  - text: Hi there! How can I help you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  - text: Sending some positive vibes your way!
+  - text: Hope this brightens your day!
+  utter_did_that_help:
+  - text: Did that help you?
+  - text: Is there anything else I can assist you with?
+  - text: Let me know if you need further assistance.
+  utter_happy:
+  - text: Great, carry on!
+  - text: Awesome!
+  - text: Glad to hear that!
+  utter_goodbye:
+  - text: Bye
+  - text: Goodbye!
+  - text: See you later!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_need_help:
+  - text: How can I help you?
+  - text: What can I assist you with today?
+  - text: Let me know how I can assist you.
+  utter_Opening_account:
+  - text: You can open an online bank account, it's easy. Just follow the steps...
+  - text: Opening an account is simple. I can guide you through it.
+  - text: Interested in opening an account? I'm here to help.
+  utter_Requirements:
+  - text: You generally need to provide valid identification, proof of address, and meet any minimum age requirements set by the bank.
+  - text: To open an account, you'll need ID, proof of address, and meet age requirements.
+  - text: Requirements usually include ID, proof of address, and meeting age criteria.
+  utter_Time_open_account:
+  - text: The time can vary, but it often takes anywhere from a few minutes to a few days, depending on the bank and the completeness of your documentation.
+  - text: Opening times range from minutes to days, depending on your documentation and the bank.
+  - text: Typically, it takes a few minutes to a few days to open an account, based on your documents and the bank's process.
+  utter_Documents:
+  - text: Typically, you'll need a government-issued ID, proof of address, and possibly a Social Security number if you're in the United States.
+  - text: Documents usually required include ID, proof of address, and possibly a Social Security number (USA).
+  - text: You'll usually need ID, proof of address, and sometimes a Social Security number (USA) to open an account.
+  utter_Safety:
+  - text: Yes, reputable banks use encryption and other security measures to protect your personal information. Always ensure you are on a secure website (look for 'https' and a padlock icon) when submitting sensitive information.
+  - text: Your security is paramount. Banks use encryption and other safeguards to protect your data.
+  - text: Bank security is a top priority. Look for 'https' and a padlock icon when entering sensitive info.
+  utter_why_choose:
+  - text: Factors to consider when choosing an online bank include fees, account features, customer service, and the bank's reputation for security.
+  - text: Choosing a bank? Look at fees, features, customer service, and security.
+  - text: When picking a bank, think about fees, features, customer service, and security.
+  utter_Fees:
+  - text: Some banks may charge fees for opening an account or for specific services. It's important to check with the bank you are considering to understand their fee structure.
+  - text: Fees vary between banks. Check with your bank for their specific charges.
+  - text: Bank fees can vary. Check with your bank to understand their fee schedule.
+  utter_accountinformation:
+  - text: To get information about your account, you can check your balance, review recent transactions, and manage your account settings online.
+  - text: Manage your account online. Check balances, view transactions, and update settings.
+  - text: Access your account info online. Check balances, review transactions, and manage settings.
+  utter_contactcustomer:
+  - text: You can contact customer service by calling our support line at [Customer Service Phone Number] or by emailing [Customer Service Email].
+  - text: Need assistance? Call us at [Customer Service Phone Number] or email [Customer Service Email].
+  - text: Reach out to us. Call [Customer Service Phone Number] or email [Customer Service Email].
+  utter_transfermoney:
+  - text: You can transfer money between accounts through our online banking platform. Simply log in, select 'Transfer Funds,' and follow the instructions.
+  - text: Transfer funds online. Log in, choose 'Transfer Funds,' and follow the steps.
+  - text: Move money online. Log in, select 'Transfer Funds,' and proceed.
+  utter_checkbalance:
+  - text: You can check your account balance by logging into your account online or using our mobile app. Your current balance will be displayed on the dashboard.
+  - text: Check your balance online or on our app. Your current balance is on the dashboard.
+  - text: View your balance online or on our app. It's on the dashboard.
+  utter_reportissue:
+  - text: If you encounter any issues with your account, please contact customer service for assistance. They will help resolve any problems you may have.
+  - text: Having issues? Contact customer service for help. They'll resolve any problems.
+  - text: Experiencing problems? Reach out to customer service for assistance.
+  utter_applyforloan:
+  - text: To apply for a loan, visit our website and navigate to the loans section. You can apply online by filling out the loan application form and submitting the required documents.
+  - text: Ready for a loan? Visit our site, go to loans, and apply online.
+  - text: Need a loan? Apply online via our website's loans section.
+  utter_check_application_status:
+  - text: You can check the status of your application by logging into your account on our website or contacting our customer support.
+  - text: Check your application status online or contact support for updates.
+  - text: View your application's progress online or call support for details.
+  utter_application_rejection_reason:
+  - text: If your application was rejected, it could be due to incomplete documentation, failure to meet eligibility criteria, or other specific reasons. Please contact our support for further details.
+  - text: Application declined? Reasons could include incomplete docs or eligibility issues. Contact support for more info.
+  - text: Application not accepted? Reasons might include incomplete docs or eligibility. Reach out to support for details.
+  utter_application_approval_confirmation:
+  - text: Once your application is approved, you will receive a confirmation email or notification. You can also check the status of your application online.
+  - text: Approval confirmed? Watch for an email or check online for status updates.
+  - text: Application approved? Look for an email or check online for confirmation.
+  utter_update_application_information:
+  - text: To update your application information, please log into your account on our website or contact our customer support for assistance.
+  - text: Update your application info. Log in or contact support for help.
+  - text: Need to change application details? Log in or contact support.
+  utter_cancel_application:
+  - text: To cancel your application, please contact our customer support and they will assist you with the process.
+  - text: Want to cancel your application? Contact support for help.
+  - text: Need to cancel an application? Contact our support team.
+  utter_contact_support_for_application:
+  - text: For any questions or assistance regarding your application, please contact our customer support team.
+  - text: Questions about your application? Contact our support team for assistance.
+  - text: Need help with your application? Our support team is here to assist you.
+  utter_bank_account_types:
+  - text: There are various types of bank accounts you can open online, including savings accounts, checking accounts, and more. Each has its own benefits and features.
+  - text: Choose from different bank accounts online, like savings or checking, each with unique perks.
+  - text: Open online bank accounts such as savings or checking, each offering different benefits.
+  utter_account_security:
+  - text: Online bank accounts are secure with encryption and other measures to protect your information. Always ensure you're on a secure website.
+  - text: Your online account is secure with encryption and other safeguards. Use secure websites.
+  - text: Security is top-notch for online accounts. Use secure websites for peace of mind.
+  utter_account_restrictions:
+  - text: There may be restrictions such as age or residency requirements when opening an online bank account. Check with the bank for specific details.
+  - text: Consider age or residency rules when opening an online bank account. Contact the bank for more info.
+  - text: Review age or residency requirements for online bank accounts. Details available from the bank.
+  utter_account_features:
+  - text: Online bank accounts come with features like mobile banking, online bill pay, and 24/7 account access. These features vary by bank.
+  - text: Enjoy features like mobile banking, online bill pay, and 24/7 account access with online bank accounts.
+  - text: Explore features such as mobile banking, online bill pay, and 24/7 access with online accounts.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- utter_accountinformation
+- utter_need_help
+- utter_greet

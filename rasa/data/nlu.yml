@@ -1,0 +1,301 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: need_help
+  examples: |
+    - i need help
+    - can you help me
+    - i need assistance
+    - can you assist me
+    - i want to know something
+    - i want to know
+- intent: Requirements
+  examples: |
+    - What are the prerequisites for opening an online bank account?
+    - What do I need to open a bank account online?
+    - What are the conditions for opening an account online?
+    - List the requirements for opening a bank account online.
+    - Tell me the basic requirements to open an online bank account.
+    - What criteria do I need to meet to open a bank account online?
+    - What documentation is necessary to open an online bank account?
+    - Are there any specific qualifications needed to open a bank account online?
+- intent: Opening_account
+  examples: |
+    - How can I start an online bank account?
+    - Is it possible to open a bank account over the internet?
+    - What are the steps to open a bank account online?
+    - Guide me through the process of opening an online bank account.
+    - Can you explain how I can begin an online bank account?
+    - What do I need to do to initiate the opening of an online bank account?
+    - How do I go about opening a bank account online?
+    - Could you outline the steps involved in opening an online bank account
+- intent: Time_open_account
+  examples: |
+    - How long does it usually take to open an online bank account?
+    - What is the typical duration for opening a bank account online?
+    - How much time does it take to open a bank account online?
+    - Can you tell me the average time for opening an online bank account?
+    - What is the usual processing time for opening an online bank account?
+    - How long should I expect to wait for my online bank account to be opened?
+    - Are there any factors that can affect the time it takes to open an online bank account?
+    - Is there an estimated timeframe for the online bank account opening process
+- intent: Documents
+  examples: |
+    - What documents should I prepare to open a bank account online?
+    - List the paperwork required for opening a bank account online.
+    - What are the usual documents needed to open an online bank account?
+    - Tell me about the documentation required for an online bank account.
+    - What forms of identification are typically required for opening an online bank account?
+    - Can you specify the types of documents I need to provide for opening an online bank account?
+    - Are there specific forms or IDs that I must submit to open a bank account online?
+    - Which documents are mandatory for the process of opening an online bank account
+- intent: Fees
+  examples: |
+    - Are there any charges for opening an online bank account?
+    - Do I have to pay any fees to open a bank account online?
+    - What are the fees involved in opening an online bank account?
+    - Are there any costs associated with starting an online bank account?
+    - Can you explain the fee structure for opening an online bank account?
+    - Are there any hidden costs or charges when opening an online bank account?
+    - What financial implications should I expect when opening an online bank account?
+    - Do different banks have varying fees for opening an online bank account
+- intent: Safety
+  examples: |
+    - Is it secure to open a bank account online?
+    - How safe is it to open an online bank account?
+    - What security measures protect online bank account opening?
+    - Can I trust the security of online bank account registration?
+    - What safeguards are in place to protect my information when opening an online bank account?
+    - Are there any risks associated with opening a bank account online?
+    - How can I ensure the security of my personal and financial data when opening an online bank account?
+    - What precautions should I take before proceeding with opening an online bank account
+- intent: why_choose
+  examples: |
+    - What factors should I consider when selecting an online bank?
+    - How do I choose the right bank for opening an online account?
+    - What should I look for in an online bank?
+    - Guide me in selecting a bank for online account opening.
+    - Which criteria are important when deciding on an online bank for account opening?
+    - What are the key features to compare when choosing an online bank?
+    - Can you provide a checklist for evaluating banks for online account opening?
+    - Are there specific considerations for choosing an online bank over a traditional bank
+- intent: accountinformation
+  examples: |
+    - Could you tell me how to get my account number?
+    - Could you tell me how to sign in to my account?
+    - How do I access my account online?
+    - I need information on my account
+    - Where can I get more information on my account?
+    - I need information about my account transactions
+    - How do I view my account balance?
+    - What is my account statement?
+    - How can I check my recent transactions?
+    - Can you help me with my account details?
+    - Tell me about my banking information
+    - I need information about my account details
+    - Could you provide me with account information?
+    - i want to know some informaton
+- intent: contactcustomer
+  examples: |
+    - Could you please help me talk to a customer service representative?
+    - How do I contact customer service?
+    - How can I speak to a live person?
+    - I need to speak with someone in customer service
+    - What is the customer service phone number?
+    - Is there a way to contact support?
+    - Can I get the customer service email address?
+    - How can I reach out to support?
+    - I have a question for customer service
+    - How do I get in touch with a representative?
+- intent: transfermoney
+  examples: |
+    - How do I transfer money between accounts?
+    - Can I send money to another bank account?
+    - How can I transfer funds online?
+    - What is the process for making a money transfer?
+    - I need to send money to someone
+    - How do I make a bank transfer?
+    - Tell me about transferring funds
+    - How can I transfer money from my account?
+    - Can you guide me on money transfer?
+    - What are the steps to send money?
+- intent: checkbalance
+  examples: |
+    - How do I check my account balance?
+    - What is my current balance?
+    - Can you tell me my account balance?
+    - How much money do I have in my account?
+    - Where can I find my balance information?
+    - I need to know my balance
+    - What is my available balance?
+    - Check my account balance please
+    - I want to see my balance
+    - Could you provide me with my account balance?
+- intent: reportissue
+  examples: |
+    - I want to report an issue with my account
+    - How do I report a problem with my account?
+    - Can you help me with an issue I'm having?
+    - What should I do if I have a problem with my account?
+    - My account has a problem
+    - Help me with an account issue
+    - There's a problem with my account
+    - I need assistance with an issue
+- intent: applyforloan
+  examples: |
+    - How can I apply for a loan?
+    - What are the steps to get a loan?
+    - Can I get information about applying for a loan?
+    - I want to apply for a loan
+    - How do I apply for a personal loan?
+    - Tell me about loan application process
+    - What do I need to do to apply for a loan?
+    - Can I apply for a mortgage?
+    - I'm interested in applying for a loan
+- intent: check_application_status
+  examples: |
+    - How do I check the status of my bank account application?
+    - Can I find out the status of my online bank account application?
+    - Is there a way to track my application for opening a bank account online?
+    - How can I know if my online bank account application has been processed?
+    - What is the current status of my bank account application?
+- intent: application_rejection_reason
+  examples: |
+    - Why was my bank account application rejected?
+    - Can you tell me the reason for rejecting my online bank account application?
+    - What are the common reasons for rejection of bank account applications?
+    - How can I find out why my online bank account application was denied?
+    - Is there a specific reason my application to open a bank account online was declined?
+- intent: application_approval_confirmation
+  examples: |
+    - How will I know if my online bank account application has been approved?
+    - Can you confirm if my application to open a bank account online has been accepted?
+    - Will I receive confirmation when my online bank account application is approved?
+    - What happens after I submit my application to open a bank account online?
+    - How do I know if my bank account application online has been successful?
+- intent: update_application_information
+  examples: |
+    - Can I update my information after submitting my online bank account application?
+    - Is it possible to edit my details after applying for a bank account online?
+    - How can I make changes to my online bank account application?
+    - What do I do if I need to update my information on my bank account application online?
+    - Can I modify my application for opening a bank account online?
+- intent: cancel_application
+  examples: |
+    - How do I cancel my online bank account application?
+    - Can I withdraw my application to open a bank account online?
+    - What are the steps to cancel my bank account application online?
+    - How can I stop the process of opening a bank account online?
+    - Is there a way to cancel my application for a bank account online?
+- intent: contact_support_for_application
+  examples: |
+    - How do I contact support regarding my online bank account application?
+    - Can I get assistance with my bank account application online?
+    - How can I speak to someone about my application for a bank account online?
+    - Who can I contact for help with my online bank account application?
+    - Is there a customer service number for inquiries about my bank account application online?
+- intent: bank_account_types
+  examples: |
+    - What types of bank accounts can I open online?
+    - Can you explain the different types of accounts available for opening online?
+    - Are there specific bank account options I should consider for online opening?
+    - Tell me about the various types of accounts I can open through online banking.
+- intent: account_security
+  examples: |
+    - How secure are online bank accounts?
+    - What security measures protect online bank accounts?
+    - Can I trust the security of an online bank account?
+    - What steps are taken to ensure my online bank account is safe?
+- intent: account_restrictions
+  examples: |
+    - Are there any restrictions on opening an online bank account?
+    - What limitations should I be aware of when opening a bank account online?
+    - Can you explain any restrictions or requirements for online bank account opening?
+    - Are there age or residency restrictions for opening a bank account online?
+- intent: account_features
+  examples: |
+    - What features come with opening a bank account online?
+    - Can you list the features of online bank accounts?
+    - What additional services are available with an online bank account?
+    - Tell me about the benefits and features of opening a bank account online.
