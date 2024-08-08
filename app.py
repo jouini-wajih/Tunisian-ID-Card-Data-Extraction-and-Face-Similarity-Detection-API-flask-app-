@@ -99,12 +99,15 @@ def process_image():
         file.save(file_path)
     
     # Process the image
-    result = image_processor.process_image(file_path)
+    try:
+        result = image_processor.process_image(file_path)
+    except Exception as e:
+        result = {'error': str(e)}
     
     # Optionally delete the file after processing
     os.remove(file_path)
     
-    return result, 200, {'Content-Type': 'application/json'}
+    return jsonify(result), 200  # Return JSON response with appropriate content type
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
