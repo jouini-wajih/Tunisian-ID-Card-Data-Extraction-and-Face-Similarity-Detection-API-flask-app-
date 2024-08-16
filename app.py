@@ -6,17 +6,16 @@ import requests
 from werkzeug.utils import secure_filename
 import os
 import tempfile
-import image_processor  # Import your image processing module
+import image_processor  
+from flask_cors import CORS  
 
 app = Flask(__name__)
+CORS(app)  
 
-# Define the Rasa command to run
 RASA_COMMAND = "cd ./rasa && rasa run --port 5005"
 
-# Global variable to store the Rasa process
 rasa_process = None
 
-# Function to start Rasa as a subprocess and print progress
 def start_rasa():
     global rasa_process
     try:
@@ -26,10 +25,9 @@ def start_rasa():
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True  # Capture output as text
+            text=True  
         )
         
-        # Read and print Rasa's stdout and stderr
         for line in iter(rasa_process.stdout.readline, ''):
             print(f"Rasa stdout: {line.strip()}")
         for line in iter(rasa_process.stderr.readline, ''):
@@ -40,12 +38,10 @@ def start_rasa():
     except Exception as e:
         print(f"Failed to start Rasa: {e}")
 
-# Start Rasa server in a separate thread
 def run_rasa():
-    time.sleep(5)  # Wait for a short period to allow Flask to start
+    time.sleep(5)  
     start_rasa()
 
-# Initialize and start Rasa
 rasa_thread = threading.Thread(target=run_rasa)
 rasa_thread.start()
 
